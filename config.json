@@ -1,0 +1,13 @@
+{
+    "default_lang": "ar",
+    "admins": [],
+    "token": "توكنك",
+    "onboarding_enabled": false,
+    "rank_colors": {
+        "R5": "#FFD700",
+        "R4": "#9B59B6",
+        "R3": "#3498DB",
+        "R2": "#2ECC71",
+        "R1": "#95A5A6"
+    }
+}
