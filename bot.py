@@ -1,7 +1,11 @@
-import discord
-from discord.ext import commands
-from discord.ui import View, Button
-import json, os
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+TOKEN = os.getenv("TOKEN")
+
+if __name__ == "__main__":
+    bot.run(TOKEN)
 
 # ───────── إعداد الملفات ─────────
 DATA_DIR = "data"
@@ -194,6 +198,5 @@ async def on_interaction(interaction: discord.Interaction):
 
 # ───────── تشغيل البوت ─────────
 if __name__ == "__main__":
-    TOKEN = os.getenv("MTQ2NTcyODgxOTE1NDUxODA0OQ.GyV9hK.74xSM6EIUTYkgdhT1YXMsgEm0S2gB6S6bFsj5Q")
-
-    bot.run(TOKEN)
+   TOKEN = os.getenv("TOKEN")
+bot.run(TOKEN)
