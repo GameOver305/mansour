@@ -194,5 +194,6 @@ async def on_interaction(interaction: discord.Interaction):
 
 # ───────── تشغيل البوت ─────────
 if __name__ == "__main__":
-    TOKEN = os.getenv("TOKEN")
+    TOKEN = os.getenv("MTQ2NTcyODgxOTE1NDUxODA0OQ.GyV9hK.74xSM6EIUTYkgdhT1YXMsgEm0S2gB6S6bFsj5Q")
+
     bot.run(TOKEN)
