@@ -1,11 +1,7 @@
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-TOKEN = os.getenv("TOKEN")
-
-if __name__ == "__main__":
-    bot.run(TOKEN)
+import discord
+from discord.ext import commands
+from discord.ui import View, Button
+import json, os
 
 # ───────── إعداد الملفات ─────────
 DATA_DIR = "data"
@@ -144,24 +140,20 @@ async def on_interaction(interaction: discord.Interaction):
     cid = interaction.data["custom_id"]
     uid = str(interaction.user.id)
 
-    # فتح قائمة الشارات (رسالة عادية)
     if cid == "choose_badge":
         await interaction.response.send_message("اختر شارتك:", view=BadgeSelectView(0))
         return
 
-    # التالي
     if cid.startswith("next_"):
         page = int(cid.replace("next_", "")) + 1
         await interaction.response.edit_message(content="اختر شارتك:", view=BadgeSelectView(page))
         return
 
-    # السابق
     if cid.startswith("prev_"):
         page = int(cid.replace("prev_", "")) - 1
         await interaction.response.edit_message(content="اختر شارتك:", view=BadgeSelectView(page))
         return
 
-    # اختيار شارة
     if cid.startswith("badge_"):
         key = cid.replace("badge_", "")
         label = BADGE_OPTIONS.get(key, "شارة")
@@ -173,7 +165,6 @@ async def on_interaction(interaction: discord.Interaction):
         await interaction.response.send_message(f"✔️ تم اختيار شارتك: {label}", ephemeral=True)
         return
 
-    # اختيار رتبة
     if cid.startswith("rank_"):
         rank = cid.replace("rank_", "")
         ranks = load_ranks()
@@ -183,7 +174,6 @@ async def on_interaction(interaction: discord.Interaction):
         await interaction.response.send_message(f"✔️ تم تعيين رتبتك: {rank}", ephemeral=True)
         return
 
-    # معلومات
     if cid == "info":
         await interaction.response.send_message("ℹ️ معلومات التحالف هنا", ephemeral=True)
         return
@@ -198,5 +188,8 @@ async def on_interaction(interaction: discord.Interaction):
 
 # ───────── تشغيل البوت ─────────
 if __name__ == "__main__":
-   TOKEN = os.getenv("TOKEN")
-bot.run(TOKEN)
+    TOKEN = os.getenv("TOKEN")  # لو منصتك تدعم env
+    if not TOKEN:
+        TOKEN = "حط_التوكن_حقك_هنا"  # ← حط التوكن هنا مباشرة
+
+    bot.run(TOKEN)
